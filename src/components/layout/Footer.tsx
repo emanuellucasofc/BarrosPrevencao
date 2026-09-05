@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Shield, Phone, Mail, MapPin, Clock, MessageSquare, ChevronRight, FileText, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Shield, Phone, Mail, MapPin, Clock, MessageSquare, ChevronRight, FileText, ExternalLink, Calculator } from 'lucide-react';
 import { InstagramIcon } from '../ui/Icons';
 import { Logo } from '../ui/Logo';
 import { companyInfo } from '../../data/companyInfo';
@@ -164,6 +165,12 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCourse }) => {
                     <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                     Contato e Inscrições
                   </a>
+                </li>
+                <li className="pt-2 border-t border-slate-800 mt-2">
+                  <Link to="/simulador" className="hover:text-brand-400 transition-colors flex items-center gap-1.5 text-accent-amber font-bold">
+                    <Calculator className="w-3.5 h-3.5 text-accent-amber" />
+                    Simulador de Bombeiros Civis
+                  </Link>
                 </li>
               </ul>
             </div>

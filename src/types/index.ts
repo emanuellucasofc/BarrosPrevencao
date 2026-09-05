@@ -104,3 +104,26 @@ export interface ContactFormData {
   isCompany: boolean;
   message: string;
 }
+
+// --- Simulador de Dimensionamento de Bombeiros Civis ---
+
+export type OccupationType = 'evento' | 'industria' | 'shopping' | 'condominio' | 'hospital' | 'escola' | 'outros';
+export type FireRiskLevel = 'baixo' | 'medio' | 'alto';
+
+export interface SimulatorFormData {
+  occupationType: OccupationType | '';
+  areaM2: number;
+  estimatedCrowd: number;
+  fireRisk: FireRiskLevel | '';
+  contactName: string;
+  contactCompany: string;
+  contactWhatsApp: string;
+}
+
+export interface SimulatorResult {
+  minFirefighters: number;
+  turnsPerDay: number;
+  totalPerDay: number;
+  recommendation: string;
+  details: string[];
+}

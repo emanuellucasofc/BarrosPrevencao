@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Building2,
   ShieldCheck,
@@ -12,7 +13,8 @@ import {
   Fuel,
   Box,
   Mountain,
-  Award
+  Award,
+  Calculator
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { getCompanyTrainingWhatsAppUrl } from '../../utils/whatsapp';
@@ -220,6 +222,35 @@ export const CompanyTrainingSection: React.FC<CompanyTrainingSectionProps> = ({
             </ScrollReveal>
           </div>
         </div>
+
+        {/* Banner do Simulador de Dimensionamento */}
+        <ScrollReveal animation="fade-up" delay={400}>
+          <div className="mt-12 relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-6 sm:p-8 border border-slate-700/60 shadow-xl">
+            <div className="absolute inset-0 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:20px_20px] opacity-5 pointer-events-none" />
+            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-brand-600/20 border border-brand-500/30">
+                  <Calculator className="w-8 h-8 text-brand-400" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-extrabold text-white">
+                    Quantos Bombeiros Civis sua empresa precisa?
+                  </h4>
+                  <p className="text-sm text-slate-300 mt-0.5">
+                    Use nosso simulador gratuito e descubra o efetivo ideal para sua operação.
+                  </p>
+                </div>
+              </div>
+              <Link
+                to="/simulador"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-bold shadow-emergency hover:shadow-emergency-lg hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
+              >
+                <span>Simular Agora</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
