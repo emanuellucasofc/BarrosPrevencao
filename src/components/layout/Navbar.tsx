@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageSquare, Shield, GraduationCap } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, Shield, GraduationCap, Gamepad2 } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 import { companyInfo } from '../../data/companyInfo';
@@ -175,6 +175,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   <GraduationCap className="w-4 h-4 text-brand-600" />
                   Simulado
                 </Link>
+                {/* Link para RPG */}
+                <Link
+                  to="/rpg"
+                  className="px-3.5 py-2 text-sm font-medium rounded-md transition-all duration-150 text-slate-700 hover:text-orange-600 hover:bg-slate-50 flex items-center gap-1.5"
+                >
+                  <Gamepad2 className="w-4 h-4 text-orange-500" />
+                  RPG Tático
+                </Link>
               </>
             ) : (
               <>
@@ -208,6 +216,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
                 >
                   <GraduationCap className="w-4 h-4 text-brand-600" />
                   Simulado
+                </Link>
+                <Link
+                  to="/rpg"
+                  className="px-3.5 py-2 text-sm font-medium rounded-md transition-all duration-150 text-slate-700 hover:text-orange-600 hover:bg-slate-50 flex items-center gap-1.5"
+                >
+                  <Gamepad2 className="w-4 h-4 text-orange-500" />
+                  RPG Tático
                 </Link>
               </>
             )}
@@ -283,6 +298,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
                     <GraduationCap className="w-4 h-4 text-brand-600" />
                     Simulado de Questões
                   </Link>
+                  <Link
+                    to="/rpg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-base font-semibold rounded-lg transition-colors text-slate-800 hover:text-orange-600 hover:bg-slate-50 flex items-center gap-2"
+                  >
+                    <Gamepad2 className="w-4 h-4 text-orange-500" />
+                    RPG Tático (Simulador)
+                  </Link>
                 </>
               ) : (
                 <>
@@ -300,6 +323,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   >
                     <GraduationCap className="w-4 h-4 text-brand-600" />
                     Simulado de Questões
+                  </Link>
+                  <Link
+                    to="/rpg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-base font-semibold rounded-lg transition-colors text-slate-800 hover:text-orange-600 hover:bg-slate-50 flex items-center gap-2"
+                  >
+                    <Gamepad2 className="w-4 h-4 text-orange-500" />
+                    RPG Tático (Simulador)
                   </Link>
                 </>
               )}

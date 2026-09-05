@@ -14,6 +14,7 @@ import { FloatingEnrollmentCTA } from './components/layout/FloatingEnrollmentCTA
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { ScrollToTop } from './components/ui/ScrollToTop';
 import { FirefighterExamPage } from './pages/FirefighterExamPage';
+import { FirefighterRPGPage } from './pages/FirefighterRPGPage';
 import { coursesData } from './data/courses';
 
 function HomePage() {
@@ -71,12 +72,13 @@ function HomePage() {
 
 export function AppContent() {
   const location = useLocation();
-  const isExamRoute = location.pathname === '/simulado';
+  const isIsolatedRoute = location.pathname === '/simulado' || location.pathname === '/rpg';
 
-  if (isExamRoute) {
+  if (isIsolatedRoute) {
     return (
       <Routes>
         <Route path="/simulado" element={<FirefighterExamPage />} />
+        <Route path="/rpg" element={<FirefighterRPGPage />} />
       </Routes>
     );
   }

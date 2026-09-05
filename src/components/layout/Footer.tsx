@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Phone, Mail, MapPin, Clock, MessageSquare, ChevronRight, FileText, ExternalLink, GraduationCap } from 'lucide-react';
+import { Shield, Phone, Mail, MapPin, Clock, MessageSquare, ChevronRight, FileText, ExternalLink, GraduationCap, Gamepad2 } from 'lucide-react';
 import { InstagramIcon } from '../ui/Icons';
 import { Logo } from '../ui/Logo';
 import { companyInfo } from '../../data/companyInfo';
@@ -170,6 +170,12 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCourse }) => {
                   <Link to="/simulado" className="hover:text-brand-400 transition-colors flex items-center gap-1.5 text-slate-300 hover:text-white font-semibold">
                     <GraduationCap className="w-3.5 h-3.5 text-brand-500" />
                     Simulado de Prova (Quiz)
+                  </Link>
+                </li>
+                <li className="pt-1 mt-1">
+                  <Link to="/rpg" className="hover:text-orange-400 transition-colors flex items-center gap-1.5 text-slate-300 hover:text-white font-semibold">
+                    <Gamepad2 className="w-3.5 h-3.5 text-orange-500" />
+                    Jogo RPG (Simulador Tático)
                   </Link>
                 </li>
               </ul>
