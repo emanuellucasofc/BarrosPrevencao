@@ -15,8 +15,8 @@ export const companyInfo: CompanyInfo = {
   phone: "(21) 99375-1603",
   phoneSecondary: "(21) 97078-2986",
   email: "ravy151217@gmail.com",
-  instagram: "@barrosvig767",
-  instagramUrl: "https://www.instagram.com/barrosvig767/",
+  instagram: "@barrosprevencao767",
+  instagramUrl: "https://www.instagram.com/barrosprevencao767/",
   address: "Rua Nicarágua, 186 - Penha, Rio de Janeiro - RJ",
   addressReference: "Em frente à estação de trem, em cima do Itaú",
   fullAddress: "Rua Nicarágua, 186 - Penha, Rio de Janeiro - RJ (Em frente à estação de trem, em cima do Itaú)",
@@ -27,7 +27,7 @@ export const companyInfo: CompanyInfo = {
   whatsappPlaceholder: "(21) 99375-1603",
   phonePlaceholder: "(21) 99375-1603 / (21) 97078-2986",
   emailPlaceholder: "ravy151217@gmail.com",
-  instagramPlaceholder: "@barrosvig767",
+  instagramPlaceholder: "@barrosprevencao767",
   addressPlaceholder: "Rua Nicarágua, 186 - Penha, Rio de Janeiro - RJ (Em frente à estação de trem, em cima do Itaú)",
   workingHoursPlaceholder: "Segunda a Sexta: 08h às 18h | Sábado: 08h às 14h"
 };

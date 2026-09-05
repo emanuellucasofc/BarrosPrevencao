@@ -99,8 +99,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCourse }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg bg-slate-900 hover:bg-pink-600 text-slate-300 hover:text-white transition-colors border border-slate-800"
-                  aria-label="Instagram da Barros Prevenção (@barrosvig767)"
-                  title="@barrosvig767"
+                  aria-label="Instagram da Barros Prevenção (@barrosprevencao767)"
+                  title="@barrosprevencao767"
                 >
                   <InstagramIcon className="w-4 h-4" />
                 </a>

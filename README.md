@@ -22,7 +22,7 @@ Portal institucional e catálogo oficial da **Barros Prevenção**, empresa espe
 
 - **Endereço da Sede**: Rua Nicarágua, 186 - Penha, Rio de Janeiro - RJ *(Em frente à estação de trem, em cima do Itaú)*
 - **WhatsApp / Telefones**: `(21) 99375-1603` (Principal) | `(21) 97078-2986` (Secundário)
-- **Instagram**: [@barrosvig767](https://www.instagram.com/barrosvig767/)
+- **Instagram**: [@barrosprevencao767](https://www.instagram.com/barrosprevencao767/)
 - **E-mail**: `ravy151217@gmail.com`
 
 ---
