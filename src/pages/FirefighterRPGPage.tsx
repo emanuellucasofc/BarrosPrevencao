@@ -30,6 +30,8 @@ export const FirefighterRPGPage: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [lastChoice, setLastChoice] = useState<RPGChoice | null>(null);
   const [gameState, setGameState] = useState<'playing' | 'victory' | 'game-over'>('playing');
+  const [shiftProgress, setShiftProgress] = useState<number>(1);
+  const SHIFT_GOAL = 10; // Sobreviver a 10 cenários para vencer o plantão
 
   // Scroll to top on mount
   useEffect(() => {
@@ -69,8 +71,19 @@ export const FirefighterRPGPage: React.FC = () => {
     
     if (lastChoice?.endGameState) {
       setGameState(lastChoice.endGameState);
+    } else if (lastChoice?.nextScenarioId === 'random') {
+      if (shiftProgress >= SHIFT_GOAL) {
+        setGameState('victory');
+      } else {
+        // Pega um cenário aleatório que seja diferente do atual
+        const availableScenarios = rpgScenarios.filter(s => s.id !== currentScenarioId);
+        const nextScenario = availableScenarios[Math.floor(Math.random() * availableScenarios.length)];
+        setCurrentScenarioId(nextScenario.id);
+        setShiftProgress(prev => prev + 1);
+      }
     } else if (lastChoice?.nextScenarioId) {
       setCurrentScenarioId(lastChoice.nextScenarioId);
+      setShiftProgress(prev => prev + 1);
     } else if (integrity <= 0 || dangerLevel >= 100) {
       setGameState('game-over');
     }
@@ -80,6 +93,7 @@ export const FirefighterRPGPage: React.FC = () => {
     setIntegrity(100);
     setDangerLevel(20);
     setCurrentScenarioId('s1_cpd');
+    setShiftProgress(1);
     setGameState('playing');
     setShowModal(false);
     setLastChoice(null);
@@ -112,7 +126,7 @@ export const FirefighterRPGPage: React.FC = () => {
             {'< VOLTAR'}
           </Link>
           <div className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-600">
-            Simulador Tático BC-01
+            PLANTÃO: {shiftProgress}/{SHIFT_GOAL}
           </div>
         </div>
 
@@ -171,8 +185,15 @@ export const FirefighterRPGPage: React.FC = () => {
             <div className="p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-red-600 opacity-50" />
               
+              {currentScenario.imageUrl && (
+                <div className="w-full h-48 sm:h-64 mb-6 rounded-xl overflow-hidden border border-slate-700 relative">
+                  <img src={currentScenario.imageUrl} alt={currentScenario.title} className="w-full h-full object-cover opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
+                </div>
+              )}
+
               <div className="flex flex-col items-center mb-6 text-orange-500">
-                <div className="p-4 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4">
+                <div className="p-4 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4 mt-[-40px] z-10 relative bg-slate-900">
                   {getIcon(currentScenario.icon, "w-10 h-10")}
                 </div>
                 <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight text-center">
