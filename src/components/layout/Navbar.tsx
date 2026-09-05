@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageSquare, Shield, Calculator, GraduationCap } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, Shield, GraduationCap } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 import { companyInfo } from '../../data/companyInfo';
@@ -175,14 +175,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   <GraduationCap className="w-4 h-4 text-brand-600" />
                   Simulado
                 </Link>
-                {/* Link para Dimensionamento */}
-                <Link
-                  to="/simulador"
-                  className="px-3.5 py-2 text-sm font-medium rounded-md transition-all duration-150 text-brand-600 hover:bg-brand-50/70 flex items-center gap-1.5 border border-brand-200 bg-brand-50/40"
-                >
-                  <Calculator className="w-3.5 h-3.5" />
-                  Dimensionamento
-                </Link>
               </>
             ) : (
               <>
@@ -210,13 +202,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
                 >
                   Contato
                 </Link>
-                <span
-                  className="px-3.5 py-2 text-sm font-bold rounded-md text-brand-600 bg-brand-50/70 flex items-center gap-1.5 relative"
+                <Link
+                  to="/simulado"
+                  className="px-3.5 py-2 text-sm font-medium rounded-md transition-all duration-150 text-slate-700 hover:text-brand-600 hover:bg-slate-50 flex items-center gap-1.5"
                 >
-                  <Calculator className="w-3.5 h-3.5" />
-                  Simulador
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-600 rounded-full" />
-                </span>
+                  <GraduationCap className="w-4 h-4 text-brand-600" />
+                  Simulado
+                </Link>
               </>
             )}
           </nav>
@@ -291,14 +283,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
                     <GraduationCap className="w-4 h-4 text-brand-600" />
                     Simulado de Questões
                   </Link>
-                  <Link
-                    to="/simulador"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-3 text-base font-semibold rounded-lg transition-colors text-brand-600 bg-brand-50/60 border-l-4 border-brand-500 flex items-center gap-2"
-                  >
-                    <Calculator className="w-4 h-4" />
-                    Dimensionamento de Bombeiros
-                  </Link>
                 </>
               ) : (
                 <>
@@ -309,11 +293,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   >
                     ← Voltar ao Site
                   </Link>
-                  <span
-                    className="block px-4 py-3 text-base font-semibold rounded-lg text-brand-600 bg-brand-50 border-l-4 border-brand-600"
+                  <Link
+                    to="/simulado"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-base font-semibold rounded-lg transition-colors text-slate-800 hover:text-brand-600 hover:bg-slate-50 flex items-center gap-2"
                   >
-                    Simulador de Dimensionamento
-                  </span>
+                    <GraduationCap className="w-4 h-4 text-brand-600" />
+                    Simulado de Questões
+                  </Link>
                 </>
               )}
 

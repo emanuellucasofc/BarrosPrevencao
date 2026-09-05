@@ -13,7 +13,6 @@ import { FloatingWhatsApp } from './components/layout/FloatingWhatsApp';
 import { FloatingEnrollmentCTA } from './components/layout/FloatingEnrollmentCTA';
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { ScrollToTop } from './components/ui/ScrollToTop';
-import { FirefighterSimulatorPage } from './pages/FirefighterSimulatorPage';
 import { FirefighterExamPage } from './pages/FirefighterExamPage';
 import { coursesData } from './data/courses';
 
@@ -70,24 +69,6 @@ function HomePage() {
   );
 }
 
-function SimulatorPage() {
-  const handleSelectCourseFromFooter = (courseId: string) => {
-    const course = coursesData.find((c) => c.id === courseId);
-    if (course) {
-      window.location.href = `/#contato`;
-    }
-  };
-
-  return (
-    <>
-      <main className="flex-1">
-        <FirefighterSimulatorPage />
-      </main>
-      <Footer onSelectCourse={handleSelectCourseFromFooter} />
-    </>
-  );
-}
-
 export function AppContent() {
   const location = useLocation();
   const isExamRoute = location.pathname === '/simulado';
@@ -111,7 +92,6 @@ export function AppContent() {
       {/* Rotas Principais */}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/simulador" element={<SimulatorPage />} />
       </Routes>
 
       {/* Botão Flutuante de Retorno ao Topo */}

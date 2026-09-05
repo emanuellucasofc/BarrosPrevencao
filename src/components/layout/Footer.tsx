@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Phone, Mail, MapPin, Clock, MessageSquare, ChevronRight, FileText, ExternalLink, Calculator, GraduationCap } from 'lucide-react';
+import { Shield, Phone, Mail, MapPin, Clock, MessageSquare, ChevronRight, FileText, ExternalLink, GraduationCap } from 'lucide-react';
 import { InstagramIcon } from '../ui/Icons';
 import { Logo } from '../ui/Logo';
 import { companyInfo } from '../../data/companyInfo';
@@ -166,14 +166,10 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCourse }) => {
                     Contato e Inscrições
                   </a>
                 </li>
-                <li className="pt-2 border-t border-slate-800 mt-2 space-y-2">
+                <li className="pt-2 border-t border-slate-800 mt-2">
                   <Link to="/simulado" className="hover:text-brand-400 transition-colors flex items-center gap-1.5 text-slate-300 hover:text-white font-semibold">
                     <GraduationCap className="w-3.5 h-3.5 text-brand-500" />
                     Simulado de Prova (Quiz)
-                  </Link>
-                  <Link to="/simulador" className="hover:text-brand-400 transition-colors flex items-center gap-1.5 text-accent-amber font-bold">
-                    <Calculator className="w-3.5 h-3.5 text-accent-amber" />
-                    Simulador de Dimensionamento
                   </Link>
                 </li>
               </ul>
