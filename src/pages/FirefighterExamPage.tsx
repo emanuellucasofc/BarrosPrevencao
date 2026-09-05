@@ -18,13 +18,15 @@ import {
   FileCheck,
   GraduationCap
 } from 'lucide-react';
-import { mockExamQuestions } from '../data/mockExamQuestions';
+import { getRandomExamQuestions, ExamQuestion } from '../data/mockExamQuestions';
 import { getWhatsAppUrl } from '../utils/whatsapp';
 import { Button } from '../components/ui/Button';
 
 export const FirefighterExamPage: React.FC = () => {
   // Configurações e Estados da Prova
   const [examState, setExamState] = useState<'intro' | 'active' | 'finished'>('intro');
+  // Lista de 10 questões ativas sorteadas aleatoriamente do banco de +100 questões
+  const [activeQuestions, setActiveQuestions] = useState<ExamQuestion[]>(() => getRandomExamQuestions(10));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, 'A' | 'B' | 'C' | 'D'>>({});
   const [timeRemaining, setTimeRemaining] = useState<number>(20 * 60); // 20 minutos em segundos
@@ -57,8 +59,10 @@ export const FirefighterExamPage: React.FC = () => {
     };
   }, [isTimerRunning, examState, timeRemaining]);
 
-  // Iniciar Prova
+  // Iniciar Prova com novo sorteio dinâmico de 10 questões
   const handleStartExam = () => {
+    const newQuestions = getRandomExamQuestions(10);
+    setActiveQuestions(newQuestions);
     setUserAnswers({});
     setCurrentIndex(0);
     setTimeRemaining(20 * 60);
@@ -88,9 +92,9 @@ export const FirefighterExamPage: React.FC = () => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Questão Atual
-  const currentQuestion = mockExamQuestions[currentIndex];
-  const totalQuestions = mockExamQuestions.length;
+  // Questão Atual (dentro das 10 sorteadas)
+  const currentQuestion = activeQuestions[currentIndex] || activeQuestions[0];
+  const totalQuestions = activeQuestions.length;
   const answeredCount = Object.keys(userAnswers).length;
   const progressPercent = Math.round(((currentIndex + 1) / totalQuestions) * 100);
 
@@ -98,7 +102,7 @@ export const FirefighterExamPage: React.FC = () => {
   const scoreResults = useMemo(() => {
     let correct = 0;
     let wrong = 0;
-    const details = mockExamQuestions.map((q) => {
+    const details = activeQuestions.map((q) => {
       const selected = userAnswers[q.id];
       const isCorrect = selected === q.correctOption;
       if (isCorrect) correct++;
@@ -123,7 +127,7 @@ export const FirefighterExamPage: React.FC = () => {
       timeSpentFormatted: formatTime(timeSpentSeconds),
       details,
     };
-  }, [userAnswers, totalQuestions, timeRemaining]);
+  }, [activeQuestions, userAnswers, totalQuestions, timeRemaining]);
 
   // Mensagem para tirar dúvidas no WhatsApp
   const getWhatsAppDoubtUrl = () => {
@@ -203,13 +207,13 @@ export const FirefighterExamPage: React.FC = () => {
                 <div>
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <Shield className="w-3.5 h-3.5" />
-                    Ambiente Virtual de Aprendizagem
+                    Banco com +100 Questões Inéditas • Sorteio Dinâmico
                   </div>
                   <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
                     Simulado Oficial de Bombeiro Civil
                   </h1>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-                    Teste seus conhecimentos técnicos em Prevenção, Combate a Incêndio, APH, Produtos Perigosos e NBR 14608 para provas oficiais e reciclagem.
+                    Teste seus conhecimentos técnicos em Primeiros Socorros / APH, Combate a Incêndio, Produtos Perigosos, Salvamento e NBR 14608 para provas oficiais e reciclagem.
                   </p>
                 </div>
               </div>
@@ -221,8 +225,9 @@ export const FirefighterExamPage: React.FC = () => {
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Questões</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Questões por Prova</span>
                     <span className="text-base font-bold">10 Questões</span>
+                    <span className="text-[11px] text-slate-400 block">Sorteio de 105+ questões</span>
                   </div>
                 </div>
 
@@ -233,6 +238,7 @@ export const FirefighterExamPage: React.FC = () => {
                   <div>
                     <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Tempo Limite</span>
                     <span className="text-base font-bold">20 Minutos</span>
+                    <span className="text-[11px] text-slate-400 block">Cronômetro em tempo real</span>
                   </div>
                 </div>
 
@@ -243,6 +249,7 @@ export const FirefighterExamPage: React.FC = () => {
                   <div>
                     <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Aprovação</span>
                     <span className="text-base font-bold">70% (7 acertos)</span>
+                    <span className="text-[11px] text-slate-400 block">Critério oficial técnico</span>
                   </div>
                 </div>
               </div>
@@ -254,9 +261,10 @@ export const FirefighterExamPage: React.FC = () => {
                   Como funciona o Simulado:
                 </h3>
                 <ul className="space-y-1.5 list-disc list-inside text-slate-600 dark:text-slate-300">
-                  <li>Ambiente de teste sem distrações e com cronômetro em tempo real;</li>
-                  <li>Você pode navegar livremente entre as questões e alterar suas respostas;</li>
-                  <li>Ao finalizar, você recebe a pontuação imediata e o <strong>Gabarito Comentado pelo Professor</strong> com fundamentação técnica nas normas.</li>
+                  <li><strong>Sorteio dinâmico sem repetição:</strong> a cada simulado ou clique em "Refazer", 10 novas questões inéditas são sorteadas do nosso banco com mais de 100 itens;</li>
+                  <li>Ambiente de teste sem distrações e com cronômetro em tempo real de 20 minutos;</li>
+                  <li>Você pode navegar livremente entre as 10 questões e alterar suas respostas antes de finalizar;</li>
+                  <li>Ao finalizar, você recebe a pontuação imediata e o <strong>Gabarito Comentado pelo Professor</strong> com fundamentação técnica em normas da ABNT, Diretrizes AHA e Leis Regulamentadoras.</li>
                 </ul>
               </div>
 
@@ -357,7 +365,7 @@ export const FirefighterExamPage: React.FC = () => {
           {/* Navegador Rápido de Questões (Pílulas) */}
           <div className="max-w-4xl mx-auto w-full px-4 pt-4 pb-2">
             <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {mockExamQuestions.map((q, idx) => {
+              {activeQuestions.map((q, idx) => {
                 const isCurrent = idx === currentIndex;
                 const isAnswered = !!userAnswers[q.id];
 
