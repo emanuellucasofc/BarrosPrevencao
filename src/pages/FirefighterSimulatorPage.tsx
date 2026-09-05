@@ -137,7 +137,7 @@ export const FirefighterSimulatorPage: React.FC = () => {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-20" />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up">
             <div className="mb-6 flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center rounded-full bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-400 ring-1 ring-inset ring-brand-500/20">
@@ -164,7 +164,7 @@ export const FirefighterSimulatorPage: React.FC = () => {
 
       {/* Main Grid */}
       <section className="py-12 md:py-20">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             
             {/* Left Column - Form */}
@@ -265,14 +265,14 @@ export const FirefighterSimulatorPage: React.FC = () => {
                         <label className="block text-sm font-semibold text-slate-700 mb-3">
                           Risco de Incêndio (Carga de Incêndio) <span className="text-brand-600">*</span>
                         </label>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                           <button
                             type="button"
                             onClick={() => handleRiskChange('baixo')}
-                            className={`p-4 rounded-xl border-2 text-left transition-all ${formData.fireRisk === 'baixo' ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200 hover:border-emerald-300 hover:bg-slate-50'}`}
+                            className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between h-full ${formData.fireRisk === 'baixo' ? 'border-emerald-500 bg-emerald-50 shadow-xs' : 'border-slate-200 hover:border-emerald-300 hover:bg-slate-50'}`}
                           >
-                            <div className="flex items-center mb-1">
-                              <div className="w-3 h-3 rounded-full bg-emerald-500 mr-2"></div>
+                            <div className="flex items-center mb-1.5">
+                              <div className="w-3 h-3 rounded-full bg-emerald-500 mr-2 shrink-0"></div>
                               <span className="font-bold text-slate-800">Baixo</span>
                             </div>
                             <p className="text-xs text-slate-500 leading-tight">Escritórios, residências, escolas pequenas</p>
@@ -281,10 +281,10 @@ export const FirefighterSimulatorPage: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => handleRiskChange('medio')}
-                            className={`p-4 rounded-xl border-2 text-left transition-all ${formData.fireRisk === 'medio' ? 'border-accent-amber bg-amber-50' : 'border-slate-200 hover:border-amber-300 hover:bg-slate-50'}`}
+                            className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between h-full ${formData.fireRisk === 'medio' ? 'border-accent-amber bg-amber-50 shadow-xs' : 'border-slate-200 hover:border-amber-300 hover:bg-slate-50'}`}
                           >
-                            <div className="flex items-center mb-1">
-                              <div className="w-3 h-3 rounded-full bg-accent-amber mr-2"></div>
+                            <div className="flex items-center mb-1.5">
+                              <div className="w-3 h-3 rounded-full bg-accent-amber mr-2 shrink-0"></div>
                               <span className="font-bold text-slate-800">Médio</span>
                             </div>
                             <p className="text-xs text-slate-500 leading-tight">Comércios, shoppings, galpões comuns</p>
@@ -293,10 +293,10 @@ export const FirefighterSimulatorPage: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => handleRiskChange('alto')}
-                            className={`p-4 rounded-xl border-2 text-left transition-all ${formData.fireRisk === 'alto' ? 'border-brand-600 bg-brand-50' : 'border-slate-200 hover:border-brand-300 hover:bg-slate-50'}`}
+                            className={`p-4 rounded-xl border-2 text-left transition-all cursor-pointer flex flex-col justify-between h-full ${formData.fireRisk === 'alto' ? 'border-brand-600 bg-brand-50 shadow-xs' : 'border-slate-200 hover:border-brand-300 hover:bg-slate-50'}`}
                           >
-                            <div className="flex items-center mb-1">
-                              <div className="w-3 h-3 rounded-full bg-brand-600 mr-2"></div>
+                            <div className="flex items-center mb-1.5">
+                              <div className="w-3 h-3 rounded-full bg-brand-600 mr-2 shrink-0"></div>
                               <span className="font-bold text-slate-800">Alto</span>
                             </div>
                             <p className="text-xs text-slate-500 leading-tight">Indústrias, depósitos inflamáveis</p>
@@ -415,8 +415,8 @@ export const FirefighterSimulatorPage: React.FC = () => {
                         </div>
                         <p className="text-lg font-medium text-slate-300">Bombeiros Civis por Turno</p>
                         
-                        <div className="mt-4 inline-flex items-center justify-center bg-slate-800 rounded-lg px-4 py-2 text-sm text-slate-300">
-                          <span className="font-bold text-white mx-1">{result.turnsPerDay}</span> turnos × <span className="font-bold text-white mx-1">{result.minFirefighters}</span> = <span className="font-bold text-accent-amber mx-1">{result.totalPerDay}</span> total/dia
+                        <div className="mt-4 flex flex-wrap items-center justify-center bg-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-slate-300 gap-1 text-center max-w-full">
+                          <span className="font-bold text-white">{result.turnsPerDay}</span> turnos × <span className="font-bold text-white">{result.minFirefighters}</span> = <span className="font-bold text-accent-amber">{result.totalPerDay}</span> total/dia
                         </div>
                       </div>
 
@@ -475,7 +475,7 @@ export const FirefighterSimulatorPage: React.FC = () => {
 
       {/* Info Section */}
       <section className="py-16 bg-white border-t border-slate-100">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ScrollReveal animation="fade-up" delay={100}>
               <div className="bg-slate-50 rounded-2xl p-6 h-full border border-slate-100 hover:shadow-card-hover transition-all">
@@ -523,7 +523,7 @@ export const FirefighterSimulatorPage: React.FC = () => {
       <section className="bg-slate-900 py-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/10 rounded-full blur-[80px]" />
         
-        <div className="container mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <ScrollReveal animation="fade-up">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
               Precisa de Bombeiros Civis treinados e certificados?

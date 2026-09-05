@@ -101,7 +101,7 @@ export function AppContent() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 selection:bg-brand-600 selection:text-white relative">
+    <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 selection:bg-brand-600 selection:text-white relative overflow-x-hidden">
       {/* Barra de Progresso de Rolagem no Topo */}
       <ScrollProgress />
 

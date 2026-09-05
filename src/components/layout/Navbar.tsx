@@ -51,8 +51,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
   const homeNavLinks = [
     { name: 'Início', href: '#inicio', id: 'inicio' },
     { name: 'Cursos', href: '#cursos', id: 'cursos' },
-    { name: 'Sobre nós', href: '#sobre', id: 'sobre' },
-    { name: 'Diferenciais', href: '#diferenciais', id: 'diferenciais' },
+    { name: 'Sobre', href: '#sobre', id: 'sobre' },
     { name: 'Empresas', href: '#empresas', id: 'empresas' },
     { name: 'FAQ', href: '#faq', id: 'faq' },
     { name: 'Contato', href: '#contato', id: 'contato' },
@@ -123,27 +122,29 @@ export const Navbar: React.FC<NavbarProps> = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          {isHomePage ? (
-            <a
-              href="#inicio"
-              onClick={(e) => handleNavClick(e, '#inicio')}
-              className="focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg"
-              aria-label="Barros Prevenção - Voltar ao início"
-            >
-              <Logo size={isScrolled ? 'sm' : 'md'} />
-            </a>
-          ) : (
-            <Link
-              to="/"
-              className="focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg"
-              aria-label="Barros Prevenção - Voltar ao início"
-            >
-              <Logo size={isScrolled ? 'sm' : 'md'} />
-            </Link>
-          )}
+          <div className="shrink-0">
+            {isHomePage ? (
+              <a
+                href="#inicio"
+                onClick={(e) => handleNavClick(e, '#inicio')}
+                className="focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg block"
+                aria-label="Barros Prevenção - Voltar ao início"
+              >
+                <Logo size={isScrolled ? 'sm' : 'md'} />
+              </a>
+            ) : (
+              <Link
+                to="/"
+                className="focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg block"
+                aria-label="Barros Prevenção - Voltar ao início"
+              >
+                <Logo size={isScrolled ? 'sm' : 'md'} />
+              </Link>
+            )}
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Navegação Principal">
+          <nav className="hidden xl:flex items-center gap-1 2xl:gap-1.5" aria-label="Navegação Principal">
             {isHomePage ? (
               <>
                 {homeNavLinks.map((link) => {
@@ -221,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
           </nav>
 
           {/* Action CTA & Mobile Trigger */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             {isHomePage ? (
               <Button
                 href="#contato"
@@ -250,7 +251,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors"
+              className="xl:hidden p-2.5 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors cursor-pointer"
               aria-label={isMobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
               aria-expanded={isMobileMenuOpen}
             >
@@ -261,7 +262,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-slate-200 bg-white shadow-xl animate-fade-in">
+          <div className="xl:hidden border-t border-slate-200 bg-white shadow-xl animate-fade-in">
             <div className="max-w-7xl mx-auto px-4 pt-3 pb-6 space-y-1.5">
               {isHomePage ? (
                 <>

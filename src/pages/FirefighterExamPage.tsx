@@ -164,7 +164,7 @@ export const FirefighterExamPage: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${themeClasses.wrapper}`}>
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 overflow-x-hidden ${themeClasses.wrapper}`}>
       {/* 1. TELA INTRODUTÓRIA */}
       {examState === 'intro' && (
         <div className="flex-1 flex flex-col justify-center items-center px-4 py-12 sm:py-16">
@@ -290,23 +290,23 @@ export const FirefighterExamPage: React.FC = () => {
               />
             </div>
 
-            <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
+            <div className="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-3">
               {/* Título e Progresso */}
-              <div className="flex items-center gap-3 min-w-0">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink">
                 <Link
                   to="/"
-                  className="p-2 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  className="p-1.5 sm:p-2 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
                   title="Sair da prova"
                 >
-                  <ArrowLeft className="w-5 h-5" />
+                  <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
                 <div className="min-w-0">
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-brand-600 dark:text-brand-400 block truncate">
+                  <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-brand-600 dark:text-brand-400 block truncate">
                     Simulado Bombeiro Civil
                   </span>
                   <p className="text-xs sm:text-sm font-bold truncate">
                     Questão {currentIndex + 1} de {totalQuestions}
-                    <span className="text-xs font-normal text-slate-500 ml-1.5 hidden sm:inline">
+                    <span className="text-xs font-normal text-slate-500 ml-1.5 hidden md:inline">
                       ({answeredCount} respondidas)
                     </span>
                   </p>
@@ -314,10 +314,10 @@ export const FirefighterExamPage: React.FC = () => {
               </div>
 
               {/* Cronômetro e Dark Mode */}
-              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
                 {/* Cronômetro */}
                 <div
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-mono text-xs sm:text-sm font-bold border transition-all ${
+                  className={`flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl font-mono text-xs sm:text-sm font-bold border transition-all ${
                     timeRemaining <= 180
                       ? 'bg-red-500/10 border-red-500 text-red-600 dark:text-red-400 animate-pulse'
                       : isDarkMode
@@ -326,14 +326,14 @@ export const FirefighterExamPage: React.FC = () => {
                   }`}
                   title="Tempo restante"
                 >
-                  <Clock className="w-4 h-4" />
+                  <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>{formatTime(timeRemaining)}</span>
                 </div>
 
                 {/* Alternador de Modo Noturno */}
                 <button
                   onClick={() => setIsDarkMode(!isDarkMode)}
-                  className={`p-2 rounded-xl border cursor-pointer transition-colors ${
+                  className={`p-1.5 sm:p-2 rounded-xl border cursor-pointer transition-colors shrink-0 ${
                     isDarkMode
                       ? 'border-slate-700 bg-slate-800 text-amber-400 hover:bg-slate-700'
                       : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-100'
@@ -346,7 +346,7 @@ export const FirefighterExamPage: React.FC = () => {
                 {/* Botão Finalizar */}
                 <button
                   onClick={() => setShowConfirmModal(true)}
-                  className="px-3 sm:px-4 py-1.5 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-brand-600 text-white text-xs font-bold transition-colors cursor-pointer"
+                  className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-brand-600 text-white text-xs font-bold transition-colors cursor-pointer shrink-0"
                 >
                   Finalizar
                 </button>
@@ -422,7 +422,7 @@ export const FirefighterExamPage: React.FC = () => {
                       </span>
 
                       {/* Texto da Alternativa */}
-                      <span className="text-sm sm:text-base leading-relaxed pt-0.5">
+                      <span className="text-sm sm:text-base leading-relaxed pt-0.5 min-w-0 flex-1 break-words">
                         {opt.text}
                       </span>
                     </button>
@@ -593,42 +593,42 @@ export const FirefighterExamPage: React.FC = () => {
 
           {/* Gabarito Visual Rápido (Grid de Botões Coloridos) */}
           <div className={`p-6 sm:p-8 rounded-3xl border ${themeClasses.card}`}>
-            <h3 className="text-lg font-bold mb-4 flex items-center justify-between">
-              <span>Gabarito Visual Rápido</span>
-              <div className="flex items-center gap-2 text-xs font-semibold">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+              <h3 className="text-base sm:text-lg font-bold">Gabarito Visual Rápido</h3>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs font-semibold">
                 <button
                   onClick={() => setFilterResult('all')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
-                    filterResult === 'all' ? 'bg-brand-600 text-white' : 'text-slate-500 hover:text-slate-900'
+                  className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                    filterResult === 'all' ? 'bg-brand-600 text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800'
                   }`}
                 >
                   Todas ({scoreResults.total})
                 </button>
                 <button
                   onClick={() => setFilterResult('correct')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
-                    filterResult === 'correct' ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-900'
+                  className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                    filterResult === 'correct' ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800'
                   }`}
                 >
                   Acertos ({scoreResults.correct})
                 </button>
                 <button
                   onClick={() => setFilterResult('wrong')}
-                  className={`px-2.5 py-1 rounded-lg transition-colors ${
-                    filterResult === 'wrong' ? 'bg-red-600 text-white' : 'text-slate-500 hover:text-slate-900'
+                  className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                    filterResult === 'wrong' ? 'bg-red-600 text-white' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800'
                   }`}
                 >
                   Erros ({scoreResults.wrong})
                 </button>
               </div>
-            </h3>
+            </div>
 
-            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2.5">
+            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-2.5">
               {scoreResults.details.map((q, idx) => (
                 <a
                   key={q.id}
                   href={`#questao-feedback-${q.id}`}
-                  className={`p-2.5 rounded-xl text-center font-bold text-sm flex flex-col items-center justify-center transition-transform hover:scale-105 ${
+                  className={`p-2 sm:p-2.5 rounded-xl text-center font-bold text-xs sm:text-sm flex flex-col items-center justify-center transition-transform hover:scale-105 min-w-0 ${
                     q.isCorrect
                       ? 'bg-emerald-600 text-white shadow-xs'
                       : 'bg-red-600 text-white shadow-xs'
@@ -671,7 +671,7 @@ export const FirefighterExamPage: React.FC = () => {
                   }`}
                 >
                   {/* Cabeçalho do Card */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-200 dark:border-slate-800">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4 pb-3 border-b border-slate-200 dark:border-slate-800">
                     <div className="flex items-center gap-2">
                       <span
                         className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${
@@ -697,7 +697,7 @@ export const FirefighterExamPage: React.FC = () => {
                       </span>
                     </div>
 
-                    <div className="text-xs font-mono text-slate-400">
+                    <div className="text-xs font-mono text-slate-400 shrink-0">
                       Sua resposta: <strong>{q.selected || 'Nenhuma'}</strong> | Gabarito: <strong className="text-emerald-500">{q.correctOption}</strong>
                     </div>
                   </div>
@@ -726,7 +726,7 @@ export const FirefighterExamPage: React.FC = () => {
                           className={`p-3.5 rounded-xl border flex items-start gap-3 text-sm ${optStyle}`}
                         >
                           <span className="font-bold shrink-0">{opt.letter})</span>
-                          <span>{opt.text}</span>
+                          <span className="min-w-0 flex-1 break-words">{opt.text}</span>
                         </div>
                       );
                     })}
