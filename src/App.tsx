@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Hero } from './components/home/Hero';
 import { AboutSection } from './components/home/AboutSection';
@@ -14,6 +14,7 @@ import { FloatingEnrollmentCTA } from './components/layout/FloatingEnrollmentCTA
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { ScrollToTop } from './components/ui/ScrollToTop';
 import { FirefighterSimulatorPage } from './pages/FirefighterSimulatorPage';
+import { FirefighterExamPage } from './pages/FirefighterExamPage';
 import { coursesData } from './data/courses';
 
 function HomePage() {
@@ -73,7 +74,6 @@ function SimulatorPage() {
   const handleSelectCourseFromFooter = (courseId: string) => {
     const course = coursesData.find((c) => c.id === courseId);
     if (course) {
-      // Na página do simulador, redireciona para a home com o curso
       window.location.href = `/#contato`;
     }
   };
@@ -88,7 +88,18 @@ function SimulatorPage() {
   );
 }
 
-export function App() {
+export function AppContent() {
+  const location = useLocation();
+  const isExamRoute = location.pathname === '/simulado';
+
+  if (isExamRoute) {
+    return (
+      <Routes>
+        <Route path="/simulado" element={<FirefighterExamPage />} />
+      </Routes>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 selection:bg-brand-600 selection:text-white relative">
       {/* Barra de Progresso de Rolagem no Topo */}
@@ -97,7 +108,7 @@ export function App() {
       {/* Barra de Navegação Fixa */}
       <Navbar />
 
-      {/* Rotas */}
+      {/* Rotas Principais */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/simulador" element={<SimulatorPage />} />
@@ -110,6 +121,10 @@ export function App() {
       <FloatingWhatsApp />
     </div>
   );
+}
+
+export function App() {
+  return <AppContent />;
 }
 
 export default App;
